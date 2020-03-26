@@ -5,6 +5,7 @@ function LOPA_CSTR(code,args)
 %------ 2 for P[A_BS] calculation using P[A_S], RRF
 %------ 3 for plotting boundary and contour curves
 %------ 4 for plotting RRF 3D curve
+%------ 5 for plotting RRF curves for fixed P[A_S] values
 % args = [ P[A_S] P[A_BS]  RRF ]
 % To be added: 1) pass CLOPA parameters as an argument, 2) auto calculation
 % of boundary end points
@@ -47,12 +48,12 @@ switch code
         CSTR_CLOPA.CalcRRF(SIS);
         switch code
             case 3              %-----------Draw Boundary and Contour curves------------
-                figure; [C,h] = contour(P_A_S,P_A_BS,CSTR_CLOPA.RRF_CLOPA,'ShowText','on'); xlabel('P[A_S]'); ylabel('P[A_{BS}]'); set(gca,'FontSize',28); clabel(C,h,'FontSize',28); grid on; hold on;
+                figure; [C,h] = contour(P_A_S,P_A_BS,CSTR_CLOPA.RRF_CLOPA,'ShowText','on'); xlabel('P[A_S]'); ylabel('P[A_{BS}]'); set(gca,'FontSize',48); clabel(C,h,'FontSize',48,'LabelSpacing',200); grid on; hold on;
                 P_A_S = [0:0.0001:CSTR_CLOPA.Beta/CSTR_CLOPA.Gamma_1]; P_A_BS = (CSTR_CLOPA.Beta/CSTR_CLOPA.Gamma_2)*(1-(CSTR_CLOPA.Gamma_1/CSTR_CLOPA.Beta)*P_A_S)./(1-P_A_S); plot(P_A_S,P_A_BS);
             case 4              %-----------3D RRF plot----------------------)
-                figure; h = mesh(SIS.P_Direct_Attack,SIS.P_BPCS_Attack,CSTR_CLOPA.RRF_CLOPA);  xlabel('P[A_S]'); ylabel('P[A_{BS}]'); zlabel('RRF'); set(gca,'FontSize',28);
+                figure; h = mesh(SIS.P_Direct_Attack,SIS.P_BPCS_Attack,CSTR_CLOPA.RRF_CLOPA);  xlabel('P[A_S]'); ylabel('P[A_{BS}]'); zlabel('RRF'); set(gca,'FontSize',48);
             case 5              %----------Contour plot for P[A_S], CLOPA vs LOPA -------
-                figure; [C,h] = contour(P_A_BS,CSTR_CLOPA.RRF_CLOPA,P_A_S,'ShowText','on'); xlabel('P[A_{BS}]'); ylabel('RRF'); set(gca,'FontSize',28); clabel(C,h,'FontSize',28); grid on;
+                figure; [C,h] = contour(P_A_BS,CSTR_CLOPA.RRF_CLOPA,P_A_S,'ShowText','on'); xlabel('P[A_{BS}]'); ylabel('RRF'); set(gca,'FontSize',48); clabel(C,h,'FontSize',48); grid on;
                 hold on; plot(P_A_BS,CSTR_CLOPA.RRF_LOPA*ones(1,length(P_A_BS)));
         end
     otherwise
