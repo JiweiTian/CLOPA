@@ -17,8 +17,10 @@ classdef CLOPA < handle
    end
    methods
       function CalcParam(obj,BPCS)
-         obj.Alpha_1 = BPCS.P_Physical_Failure*(obj.Init_Event_Likelihood*prod(obj.P_IPL_Failure,2)) + (BPCS.Physical_Failure_Likelihood + BPCS.Cyber_Failure_Likelihood)*prod(obj.P_IPL_BPCS_Failure);
-         obj.Alpha_2 = (1-BPCS.P_Physical_Failure)*(obj.Init_Event_Likelihood*prod(obj.P_IPL_Failure,2));
+         %obj.Alpha_1 = BPCS.P_Physical_Failure*(obj.Init_Event_Likelihood*prod(obj.P_IPL_Failure,2)) + (BPCS.Physical_Failure_Likelihood + BPCS.Cyber_Failure_Likelihood)*prod(obj.P_IPL_BPCS_Failure);
+         %obj.Alpha_2 = (1-BPCS.P_Physical_Failure)*(obj.Init_Event_Likelihood*prod(obj.P_IPL_Failure,2));
+         obj.Alpha_1 = BPCS.P_Physical_Failure*(obj.Init_Event_Likelihood*prod(obj.P_IPL_Failure,2) + BPCS.Cyber_Failure_Likelihood*prod(obj.P_IPL_BPCS_Failure)) + BPCS.Physical_Failure_Likelihood*prod(obj.P_IPL_BPCS_Failure);
+         obj.Alpha_2 = (1-BPCS.P_Physical_Failure)*(obj.Init_Event_Likelihood*prod(obj.P_IPL_Failure,2) + BPCS.Cyber_Failure_Likelihood*prod(obj.P_IPL_BPCS_Failure));
          obj.Beta = obj.TMEL;
          obj.Gamma_1 = obj.Alpha_1 + obj.Alpha_2*(BPCS.P_Direct_Attack + BPCS.P_SIS_Attack - BPCS.P_Direct_Attack*BPCS.P_SIS_Attack);
          obj.Gamma_2 = (obj.Alpha_1 + obj.Alpha_2)*BPCS.P_Direct_Attack;
