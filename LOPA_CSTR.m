@@ -48,7 +48,7 @@ switch code
         CSTR_CLOPA.CalcRRF(SIS);
         switch code
             case 3              %-----------Draw Boundary and Contour curves------------
-                figure; [C,h] = contour(P_A_S,P_A_BS,CSTR_CLOPA.RRF_CLOPA,'ShowText','on'); xlabel('P[A_S]'); ylabel('P[A_{BS}]'); set(gca,'FontSize',48); clabel(C,h,'FontSize',48,'LabelSpacing',100); grid on; hold on;
+                figure; [C,h] = contour(P_A_S,P_A_BS,CSTR_CLOPA.RRF_CLOPA, [100:100:800], 'ShowText','on'); xlabel('P[A_S]'); ylabel('P[A_{BS}]'); set(gca,'FontSize',48); clabel(C,h,'FontSize',48,'LabelSpacing',100); grid on; hold on;
                 P_A_S = [0:0.0001:CSTR_CLOPA.Beta/CSTR_CLOPA.Gamma_1]; P_A_BS = (CSTR_CLOPA.Beta/CSTR_CLOPA.Gamma_2)*(1-(CSTR_CLOPA.Gamma_1/CSTR_CLOPA.Beta)*P_A_S)./(1-P_A_S); plot(P_A_S,P_A_BS);
             case 4              %-----------3D RRF plot----------------------)
                 figure; h = mesh(SIS.P_Direct_Attack,SIS.P_BPCS_Attack,CSTR_CLOPA.RRF_CLOPA);  xlabel('P[A_S]'); ylabel('P[A_{BS}]'); zlabel('RRF'); set(gca,'FontSize',48);
