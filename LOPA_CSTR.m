@@ -51,9 +51,9 @@ switch code
                 figure; [C,h] = contour(P_A_S,P_A_BS,CSTR_CLOPA.RRF_CLOPA, [100:100:800], 'ShowText','on'); xlabel('P[A_S]'); ylabel('P[A_{BS}]'); set(gca,'FontSize',48); clabel(C,h,'FontSize',48,'LabelSpacing',100); grid on; hold on;
                 P_A_S = [0:0.0001:CSTR_CLOPA.Beta/CSTR_CLOPA.Gamma_1]; P_A_BS = (CSTR_CLOPA.Beta/CSTR_CLOPA.Gamma_2)*(1-(CSTR_CLOPA.Gamma_1/CSTR_CLOPA.Beta)*P_A_S)./(1-P_A_S); plot(P_A_S,P_A_BS);
             case 4              %-----------3D RRF plot----------------------)
-                figure; h = mesh(SIS.P_Direct_Attack,SIS.P_BPCS_Attack,CSTR_CLOPA.RRF_CLOPA);  xlabel('P[A_S]'); ylabel('P[A_{BS}]'); zlabel('RRF'); set(gca,'FontSize',48);
+                figure; h = mesh(SIS.P_Direct_Attack,SIS.P_BPCS_Attack,CSTR_CLOPA.RRF_CLOPA);  xlabel('P[A_S]'); ylabel('P[A_{BS}]'); zlabel('RRF'); set(gca,'FontSize',60);
             case 5              %----------Contour plot for P[A_S], CLOPA vs LOPA -------
-                figure; [C,h] = contour(P_A_BS,CSTR_CLOPA.RRF_CLOPA,P_A_S,'ShowText','on'); xlabel('P[A_{BS}]'); ylabel('RRF'); set(gca,'FontSize',48); clabel(C,h,'FontSize',48); grid on;
+                figure; [C,h] = contour(P_A_BS,CSTR_CLOPA.RRF_CLOPA,P_A_S,[0.001:0.001:0.005],'ShowText','on'); xlabel('P[A_{BS}]'); ylabel('RRF'); set(gca,'FontSize',60); clabel(C,h,'FontSize',60); grid on;
                 hold on; plot(P_A_BS,CSTR_CLOPA.RRF_LOPA*ones(1,length(P_A_BS)));
         end
     otherwise
